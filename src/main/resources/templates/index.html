@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<title>Insert title here</title>
+</head>
+<body>
+		<header th:replace="~{fragment/frag :: header}"></header>
+		
+		<div class="container-fluid mt-3 text-right pb-2 pt-2">
+		<a href="add" class="btn btn-warning">Add Student</a>
+		</div>
+		
+		<div class="container-fluid mt-3">
+		<div class="p-2" style="box-shadow: 0 10px 10px 0 rgba(0,0,0,0.7); border-radius: 10px;">
+		<table class="table table-dark table-bordered table-striped table-hover">
+			<thead>
+				<tr class="bg-info text-center">
+					<th>Name</th>
+					<th>Address</th>
+					<th>Mobile</th>
+					<th>Email</th>
+					<th>Adhaar No</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="s : ${studs}" class="text-center">
+					<td th:text="${s.name}"></td>
+					<td th:text="${s.address}"></td>
+					<td th:text="${s.mobile}"></td>
+					<td th:text="${s.adhhar}"></td>
+					<td th:text="${s.emailId}"></td>
+					<td>
+						<a th:href="@{update(id=${s.slNo})}" class="btn btn-success">Update</a>
+						<a th:href="@{delete(id=${s.slNo})}" class="btn btn-danger"
+						onclick="if(!confirm('Do you Want to delete it?')) return false;">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		</div>
+</body>
+</html>
